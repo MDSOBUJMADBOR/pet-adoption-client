@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/cat.png"
@@ -39,13 +40,17 @@ const [open,setOpen] = useState(false)
             height={30}
             className="object-cover h-auto w-auto rounded-full"
           />
-          <Link href={"/"}><h3 className="text-[20px] font-bold">Pet Adoption Platform</h3></Link>
+<Link href={"/"}>
+  <h3 className="text-[24px] font-bold bg-gradient-to-r from-red-500  to-green-500 bg-clip-text text-transparent">
+    Pet Adoption Platform
+  </h3>
+</Link>
         </div>
 
-        <ul className="sm:flex hidden items-center gap-3 text-sm">
+        <ul className="sm:flex hidden items-center  text-sm">
 {
 navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
-<li className=" w-[70px] text-center ">{item.text}</li>
+<li className="px-7 py-2 text-center font-semibold">{item.text}</li>
 </MyNavLink>
 ))}
 
@@ -60,7 +65,7 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
 
   {/* Mobile Menu */}
 <ul
-  className={` sm:hidden absolute top-12 left-0 w-full bg-[#31537c] shadow-md flex flex-col items-center gap-5 py-4 transition-all duration-300 ${
+  className={` sm:hidden absolute top-12 left-0 w-full bg-green-100 shadow-md flex flex-col items-center gap-5 py-4 transition-all duration-300 ${
     open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
   }`}
 >
