@@ -6,6 +6,7 @@ import logo from "../../public/cat.png"
 import MyNavLink from "./MyNavLink";
 import { Menu, X } from 'lucide-react';
 import { useState } from "react";
+import { Button } from "@heroui/react";
 
 
 
@@ -138,7 +139,7 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
               <Button onClick={handleSignOut} size="sm" variant="danger">LoginOut</Button>
             </div>
           )} */}
-<h1>sobuj</h1>
+<Link href={"/login"}><Button>Login</Button></Link>
         </div>
       </nav>
     </div>
