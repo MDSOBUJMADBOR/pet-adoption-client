@@ -4,9 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/cat.png"
 import MyNavLink from "./MyNavLink";
-import { Menu, X } from 'lucide-react';
+import { LayoutDashboard, LogOut, Menu, User, X } from 'lucide-react';
 import { useState } from "react";
 import { Button } from "@heroui/react";
+
+
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 
 
@@ -26,6 +30,17 @@ text: "All Pets"
 
 ]
 const [open,setOpen] = useState(false)
+const router = useRouter();
+// const {data:session, isPending } = useSession();
+// console.log(session,'so');
+const { data : session} = authClient.useSession();
+const user = session?.user;
+console.log(user,'u');
+const handleLogOut = async () => {
+  await authClient.signOut();
+  router.push("/")
+}
+
 
 
   return (
@@ -54,22 +69,58 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
 <li className="px-7 py-2 text-center font-semibold">{item.text}</li>
 </MyNavLink>
 ))}
+</ul>
 
-          
-        </ul>
-{/* small device start */}
-    <div onClick={() => setOpen(!open)} className="dropdown dropdown-center sm:hidden ">
+
+
+
+{/* Mobile device start */}
+
+ <div className="relative group sm:hidden">
+                  <button className="flex items-center gap-3 p-1 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border">
+                    <Image
+                      width={40}
+                      height={40}
+                      src={session?.user?.image || "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"}
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
+                    />
+                    <div className="text-left hidden lg:block">
+                      <p className="text-sm font-bold truncate max-w-25">{session?.user?.name}</p>
+                      <p className="text-[10px] text-slate-500">Student</p>
+                    </div>
+                  </button>
+                  <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="px-4 py-3 border-b border-slate-100">
+                      <p className="font-bold text-sm">Welcome back!</p>
+                      <p>{session?.user?.name}</p>
+                      <p className=" truncate text-slate-500">{session?.user?.email}</p>
+                    </div>
+                    <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-gray-200 flex items-center gap-3 transition-colors">
+                      <LayoutDashboard className="w-4 h-4" /> Dashboard
+                    </Link>
+                    
+                    <button
+                      onClick={handleLogOut}
+                      className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 transition-colors text-left cursor-pointer">
+                      <LogOut className="w-4 h-4" /> Log Out
+                    </button>
+                  </div>
+                </div>
+    <div onClick={() => setOpen(!open)} className="dropdown dropdown-center sm:hidden">
   
   <div onClick={toggleMenu} className="sm:hidden cursor-pointer">
   {open ? <X className="" /> : <Menu className="" />}
 </div>
 
-  {/* Mobile Menu */}
+ 
 <ul
   className={` sm:hidden absolute top-12 left-0 w-full bg-green-100 shadow-md flex flex-col items-center gap-5 py-4 transition-all duration-300 ${
     open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
   }`}
 >
+
+
   {navItems.map((item, index) => (
     <li className="w-full px-4 " key={index}>
       <Link
@@ -81,66 +132,63 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
       </Link>
     </li>
   ))}
+  </ul>
 
-
-
-
-
-{/* {!user && <li className="w-full px-4">
-    <Link
-      href="/login"
-      className="block w-full py-2 text-center rounded-lg transition-all duration-300 ease-in-out hover:bg-[#3cd86b] text-white"
-    >
-      <Button className="text-lg " variant="light">Login</Button>
-    </Link>
-  </li>}
-{user && <li className="flex gap-3">
-              <Avatar size="sm">
-                <Avatar.Image
-                  alt="John Doe"
-                  src={user?.image}
-                  referrerPolicy="no-referrer"
-                />
-                <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback> 
-              </Avatar>
-
-              <Button onClick={handleSignOut} size="sm" variant="danger">LoginOut</Button>
-            </li>
-} */}
-
-
-
-</ul>
 </div>
-{/* small device ent */} 
 
 
 
-        <div className="sm:flex hidden gap-4">
-          {/* {!user && 
-            <ul className="flex items-center gap-4  text-sm">
-            
-            <li>
-              <Link href={"/login"}><Button>Login</Button></Link>
-            </li>
-          </ul>}
 
-          {user && (
-            <div className="flex gap-3">
-              <Avatar size="sm">
-                <Avatar.Image
-                  alt="John Doe"
-                  src={user?.image}
-                  referrerPolicy="no-referrer"
-                />
-                <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback> 
-              </Avatar>
 
-              <Button onClick={handleSignOut} size="sm" variant="danger">LoginOut</Button>
-            </div>
-          )} */}
-<Link href={"/login"}><Button>Login</Button></Link>
-        </div>
+<div className="hidden md:flex items-center gap-4">
+  {
+              !user ? <>
+                <Link href="/login" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Login</Link>
+                <Link href="/register">
+
+                  <Button color="primary" className="font-bold rounded-full px-8 shadow-lg shadow-blue-600/20">
+                    Register 
+                  </Button>
+                </Link>
+              </> :
+                <div className="relative group">
+                  <button className="flex items-center gap-3 p-1 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border">
+                    <Image
+                      width={40}
+                      height={40}
+                      src={session?.user?.image || "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"}
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
+                    />
+                    <div className="text-left hidden lg:block">
+                      <p className="text-sm font-bold truncate max-w-25">{session?.user?.name}</p>
+                      <p className="text-[10px] text-slate-500">Student</p>
+                    </div>
+                  </button>
+                  <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="px-4 py-3 border-b border-slate-100">
+                      <p className="font-bold text-sm">Welcome back!</p>
+                      <p>{session?.user?.name}</p>
+                      <p className=" truncate text-slate-500">{session?.user?.email}</p>
+                    </div>
+                    <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-gray-200 flex items-center gap-3 transition-colors">
+                      <LayoutDashboard className="w-4 h-4" /> Dashboard
+                    </Link>
+                    
+                    <button
+                      onClick={handleLogOut}
+                      className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 transition-colors text-left cursor-pointer">
+                      <LogOut className="w-4 h-4" /> Log Out
+                    </button>
+                  </div>
+                </div>
+}
+</div>   
+
+
+
+
+    
       </nav>
     </div>
   );
