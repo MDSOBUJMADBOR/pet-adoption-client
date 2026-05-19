@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { MapPin, DollarSign } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@heroui/react";
 
 const PetCard = ({course}) => {
-console.log(course,'course');
-const { petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price } = course;
+// console.log(course,'course');
+const {_id, petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price } = course;
+console.log(_id);
 
   return (
     <div className=" rounded-2xl  shadow-md border bg-white overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
@@ -23,14 +26,6 @@ const { petName,species,breed,age,gender,image,healthStatus,location, ownerEmail
           Available
         </span>
 
-        {/* Image */}
-        {/* <Image
-          src={image}
-          alt="pet"
-          width={150}
-          height={120}
-          className="object-contain w-full h-full"
-        /> */}
         <Image src={image || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600'}
 
                     alt="Course Image"
@@ -48,13 +43,13 @@ const { petName,species,breed,age,gender,image,healthStatus,location, ownerEmail
         </h2>
 
         <p className="text-gray-500 text-sm">
-          In odit atque hic pr • 1988 years old • Female
+        {breed} • {age} years old • {gender}
         </p>
 
         {/* Location */}
         <div className="flex items-center gap-2 text-gray-600 text-sm">
           <MapPin size={16} className="text-red-500" />
-          Ea aut sunt quia ali
+          {location}
         </div>
 
         {/* Price */}
@@ -65,14 +60,12 @@ const { petName,species,breed,age,gender,image,healthStatus,location, ownerEmail
       </div>
 
       {/* BUTTONS */}
-      <div className="border-t p-4 flex gap-3">
-        <button className="flex-1 border rounded-full py-2 text-gray-700 hover:bg-gray-100 transition">
-          View Details
-        </button>
+      <div className="border-t p-4 flex justify-between gap-3">
+<Link href={`/all-pets/${_id}`}><Button className="bg-gradient-to-r from-red-500 to-green-500 text-white font-semibold px-6 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300"> View Details</Button></Link>
 
-        <button className="flex-1 rounded-full py-2 text-white bg-gradient-to-r from-pink-500 to-teal-400 hover:opacity-90 transition">
-          Adopt Now
-        </button>
+<Link href={"/all-pets"}><Button className="rounded-xl hover:scale-105 transition-all duration-300">
+  Adopt Now
+</Button></Link>
       </div>
     </div>
   );

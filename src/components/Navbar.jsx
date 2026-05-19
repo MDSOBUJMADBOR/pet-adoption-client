@@ -42,7 +42,7 @@ const [open,setOpen] = useState(false)
             className="object-cover h-auto w-auto rounded-full"
           />
 <Link href={"/"}>
-  <h3 className="text-[24px] font-bold bg-gradient-to-r from-red-500  to-green-500 bg-clip-text text-transparent">
+  <h3 className="text-[24px] font-bold  ">
     Pet Adoption Platform
   </h3>
 </Link>

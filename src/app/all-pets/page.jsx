@@ -7,6 +7,8 @@ import { getAllPets } from "@/lib/pets/data";
 import { Button, Dropdown, Label, SearchField } from "@heroui/react";
 
 const Featured = () => {
+
+  
   const [courses, setCourses] = useState([]);
 
   const [search, setSearch] = useState("");
@@ -53,7 +55,7 @@ const Featured = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="px-10 py-10">
 
       {/* TITLE */}
       <h1 className="font-bold text-3xl mb-6">All Pets</h1>
@@ -164,8 +166,15 @@ const Featured = () => {
 
       </div>
 
+
+
+
+
+
     </div>
   );
 };
 
 export default Featured;
+
+
