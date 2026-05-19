@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Card, Separator } from "@heroui/react";
 import {
   Button,
@@ -11,11 +12,66 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
 
-const LoginPage = () => {
+const RegisterPage = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+
+    const password = user.password;
+    const confirm = user.confirmPassword;
+
+    // ✅ Password match check
+    if (password !== confirm) {
+      alert("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await authClient.signUp.email({
+        email: user.email,
+        password: user.password,
+        name: user.name,
+        image: user.image || "", // optional
+      });
+
+      if (error) {
+        alert(error.message || "Registration failed");
+        setLoading(false);
+        return;
+      }
+
+      if (data) {
+        alert("Registration Successful ✅");
+        router.push("/"); // ✅ redirect fix
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+    const handleGoogleSignin = async() => {
+    await authClient.signIn.social({
+        provider: "google"
+    })
+
+  }
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 py-8 ">
+    <div className="px-4 sm:px-6 lg:px-8 bg-gray-100 py-8">
       <div className="max-w-4xl mx-auto min-h-screen flex flex-col justify-center">
         
         {/* Heading */}
@@ -31,7 +87,7 @@ const LoginPage = () => {
         {/* Card */}
         <Card className="border rounded-lg w-full max-w-md sm:max-w-lg md:max-w-xl mx-auto p-4 sm:p-6">
           
-          <Form className="w-full flex flex-col gap-4">
+          <Form onSubmit={onSubmit} className="w-full flex flex-col gap-4">
 
             {/* Name */}
             <TextField isRequired name="name" type="text">
@@ -59,8 +115,8 @@ const LoginPage = () => {
               <FieldError />
             </TextField>
 
-            {/* Photo */}
-            <TextField isRequired name="image" type="text">
+            {/* Photo (Optional) */}
+            <TextField name="image" type="text">
               <Label>Photo URL</Label>
               <Input placeholder="https://example.com/photo.jpg" />
               <FieldError />
@@ -93,11 +149,7 @@ const LoginPage = () => {
             </TextField>
 
             {/* Confirm Password */}
-            <TextField
-              isRequired
-              name="confirmPassword"
-              type="password"
-            >
+            <TextField isRequired name="confirmPassword" type="password">
               <Label>Confirm Password</Label>
               <Input placeholder="Re-enter your password" />
               <FieldError />
@@ -105,10 +157,11 @@ const LoginPage = () => {
 
             {/* Submit */}
             <Button
-              className="rounded-[10px] w-full bg-cyan-500"
+              className="rounded-[10px] w-full bg-cyan-500 text-white"
               type="submit"
+              disabled={loading}
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </Button>
           </Form>
 
@@ -123,6 +176,7 @@ const LoginPage = () => {
 
           {/* Google */}
           <Button
+          onClick={handleGoogleSignin}
             variant="outline"
             className="w-full rounded-[10px] hover:bg-green-100 flex items-center justify-center gap-2"
           >
@@ -145,13 +199,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
-
-
-
-// const password = formData.get("password");
-// const confirm = formData.get("confirmPassword");
-
-// if (password !== confirm) {
-//   alert("Passwords do not match");
-// }
+export default RegisterPage;
