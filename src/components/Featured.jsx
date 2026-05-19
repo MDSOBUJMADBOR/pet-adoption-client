@@ -12,11 +12,11 @@ console.log(courses,'sob');
 
 
 
-<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+ {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
 {
-courses?.map(course => <PetCard key={course?._id} course={course}></PetCard>)
+courses?.map(course => <PetCard key={course?._id} course={course}></PetCard>) 
 }
-</div>
+</div>  */}
 
                     </div>
           );
