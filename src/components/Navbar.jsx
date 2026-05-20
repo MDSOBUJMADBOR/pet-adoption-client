@@ -26,7 +26,7 @@ path: "/",
 text: "Home"
  },
  {
-path: "/all-pets",
+path: "/all-pets", 
 text: "All Pets"
  },
 
@@ -60,7 +60,7 @@ path: "/all-pets",
 text: "All Pets"
  },
  {
-  path: "/dashboard",
+  path: "/user/dashboard",
   text: "dashboard"
  },
 ]
@@ -69,8 +69,6 @@ text: "All Pets"
 
 const [open,setOpen] = useState(false)
 const router = useRouter();
-// const {data:session, isPending } = useSession();
-// console.log(session,'so');
 const { data : session} = authClient.useSession();
 const user = session?.user;
 
@@ -115,41 +113,6 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
 
 
 {/* Mobile device start */}
-{/* 
- <div className="relative group sm:hidden">
-
-                  <button className="flex items-center gap-3 p-1 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border">
-                    <Image
-                      width={40}
-                      height={40}
-                      src={session?.user?.image || "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"}
-                      alt="avatar"
-                      className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
-                    />
-                    <div className="text-left hidden lg:block">
-                      <p className="text-sm font-bold truncate max-w-25">{session?.user?.name}</p>
-                      <p className="text-[10px] text-slate-500">Student</p>
-                    </div>
-                  </button>
-
-                  <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="px-4 py-3 border-b border-slate-100">
-                      <p className="font-bold text-sm">Welcome back!</p>
-                      <p>{session?.user?.name}</p>
-                      <p className=" truncate text-slate-500">{session?.user?.email}</p>
-                    </div>
-                    <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-gray-200 flex items-center gap-3 transition-colors">
-                      <LayoutDashboard className="w-4 h-4" /> Dashboard
-                    </Link>
-                    
-                    <button
-                      onClick={handleLogOut}
-                      className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 transition-colors text-left cursor-pointer">
-                      <LogOut className="w-4 h-4" /> Log Out
-                    </button>
-                  </div>
-
-</div>  */}
 
 { !user ?
  <>
@@ -183,20 +146,7 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
   }`}
 >
 
-{/* 
- {navItems.map((item, index) => (
-    <li className="w-full px-4 " key={index}>
-      <Link
-        href={item.path}
-        onClick={() => setOpen(false)}
-        className="block w-full py-3 text-center rounded-lg transition-all duration-400 ease-in-out  hover:bg-[#3cd86b]"
-      >
-        {item.text}
-      </Link>
-    </li>
 
-
-  ))} */}
 {! user ? <>
 {
 navItem.map((item,index) => (<MyNavLink1 key={index} href={item.path}>
@@ -205,10 +155,6 @@ navItem.map((item,index) => (<MyNavLink1 key={index} href={item.path}>
 </MyNavLink1>
 ))}
 
-{/* <li ><Link href={"/"}><Button className="w-full m-2 bg-red-200 rounded-full text-red-500">Home</Button></Link></li>
-<li ><Link href={"/all-pets"}><Button className="w-full m-2 bg-red-200 rounded-full text-red-500">All Pets</Button></Link></li>
-<li ><Link href={"/login"}><Button className="w-full m-2 bg-red-200 rounded-full text-red-500">login</Button></Link></li>
-<li><Link href={"/"}><Button className=" w-full m-2 bg-red-200 rounded-full text-red-500">Get Started</Button></Link></li> */}
 </>
 :
 <>
@@ -219,10 +165,7 @@ navItem2.map((item,index) => (<MyNavLink2 key={index} href={item.path}>
 </MyNavLink2>
 ))}
 <Button onClick={handleLogOut} className="w-full px-7 py-2 mx-auto">Log Out</Button>
-{/* <li ><Link href={"/"}><Button className="w-full mx-auto m-2 px-7 py-4 bg-red-200 rounded-full text-red-500">Home</Button></Link></li>
-<li ><Link href={"/all-pets"}><Button className="w-full mx-auto m-2 bg-red-200 rounded-full text-red-500">All Pets</Button></Link></li>
-<li ><Link href={"/dashboard"}><Button className="w-full mx-auto m-2 bg-red-200 rounded-full text-red-500">Dashboard</Button></Link></li>
-<li><Link href={"/"}><Button onClick={handleLogOut} className="w-full mx-auto m-2 bg-red-200 rounded-full text-red-500">Log Out</Button></Link></li> */}
+
 </>
 
 }
@@ -270,7 +213,7 @@ navItem2.map((item,index) => (<MyNavLink2 key={index} href={item.path}>
                       <p>{session?.user?.name}</p>
                       <p className=" truncate text-slate-500">{session?.user?.email}</p>
                     </div>
-                    <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-gray-200 flex items-center gap-3 transition-colors">
+                    <Link href="/user/dashboard" className="px-4 py-2 text-sm hover:bg-gray-200 flex items-center gap-3 transition-colors">
                       <LayoutDashboard className="w-4 h-4" /> Dashboard
                     </Link>
                     

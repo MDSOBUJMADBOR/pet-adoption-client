@@ -79,7 +79,7 @@ const Featured = () => {
               />
 
               <SearchField.ClearButton />
-            </SearchField.Group>
+            </SearchField.Group> 
           </SearchField>
         </div>
 
@@ -112,7 +112,7 @@ const Featured = () => {
                   <Label>Bird</Label>
                 </Dropdown.Item>
 
-                <Dropdown.Item id="Fish">
+                <Dropdown.Item id="Fish">   
                   <Label>Fish</Label>
                 </Dropdown.Item>
               </Dropdown.Menu>

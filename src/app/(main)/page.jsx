@@ -8,11 +8,11 @@ import StaticSectionPage from "@/components/Static-section";
 export default function Home() {
   return ( 
     <div>
-        <Navbar></Navbar>
+     
       <Hero></Hero>
       <Featured></Featured>
       <StaticSectionPage></StaticSectionPage>
-    <Footer></Footer>
+   
     </div>
   );
 }
