@@ -1,9 +1,10 @@
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const MyNavLink = ({ href, className = "", children }) => {
+const MyNavLink2 = ({ href, className = "", children }) => {
   const pathname = usePathname();
 
   const isActive = pathname === href; 
@@ -12,7 +13,7 @@ const MyNavLink = ({ href, className = "", children }) => {
     <Link
       href={href}
       className={`${className} ${
-        isActive ? "bg-red-200 rounded-full text-red-500" : ""
+        isActive ? " text-red-500" : ""
       }`}
     >
       {children}
@@ -20,4 +21,4 @@ const MyNavLink = ({ href, className = "", children }) => {
   );
 };
 
-export default MyNavLink;
+export default MyNavLink2;

@@ -56,7 +56,7 @@ console.log(_id);
         <div className="flex items-center gap-2 text-gray-800 font-medium">
           <DollarSign size={16} className="text-red-500" />
           ${price}
-        </div>
+        </div> 
       </div>
 
       {/* BUTTONS */}
