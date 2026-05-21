@@ -5,7 +5,7 @@ import { MapPin, DollarSign } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 
-const PetCard = ({course}) => {
+const PetCard = ({course}) => { 
 // console.log(course,'course');
 const {_id, petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price } = course;
 console.log(_id);
@@ -63,7 +63,7 @@ console.log(_id);
       <div className="border-t p-4 flex justify-between gap-3">
 <Link href={`/all-pets/${_id}`}><Button className="bg-gradient-to-r from-red-500 to-green-500 text-white font-semibold px-6 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300"> View Details</Button></Link>
 
-<Link href={"/all-pets"}><Button className="rounded-xl hover:scale-105 transition-all duration-300">
+<Link href={`/all-pets/${_id}`}><Button className="rounded-xl hover:scale-105 transition-all duration-300">
   Adopt Now
 </Button></Link>
       </div>

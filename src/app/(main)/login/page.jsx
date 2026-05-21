@@ -3,7 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Card, Separator } from "@heroui/react";
 import {
-  Button,
+  Button, 
   Description,
   FieldError,
   Form,
@@ -38,7 +38,7 @@ const LoginPage = () => {
         alert(error.message || "Login failed ❌");
         return;
       }
-
+ 
       if (data) {
         alert("Login Successful ✅");
         router.push("/");

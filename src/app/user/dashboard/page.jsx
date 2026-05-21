@@ -1,11 +1,10 @@
-import React from 'react';
+import { permanentRedirect } from 'next/navigation';
 
-const Home = () => {
-          return (
-                    <div>
-                              
-                    </div>
-          );
+
+
+
+const Dashboard = () => {
+          permanentRedirect('/user/dashboard/my-requests');
 };
 
-export default Home;
+export default Dashboard;

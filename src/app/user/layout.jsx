@@ -1,12 +1,15 @@
 "use client";
 
 import Navbar2 from "@/components/Navbar2";
+import { authClient } from "@/lib/auth-client";
 import { FileText, Plus, Heart, LogOut, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 import { useState } from "react";
 
 const DashboardLayout = ({ children }) => {
+  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -16,6 +19,10 @@ const DashboardLayout = ({ children }) => {
         ? "bg-gradient-to-r from-pink-500 to-red-400 text-white"
         : "text-gray-600 hover:text-black hover:bg-gray-100"
     }`;
+const handleLogOut = async () => {
+  await authClient.signOut();
+  router.push("/")
+}
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -64,7 +71,7 @@ const DashboardLayout = ({ children }) => {
             </div>
           </div>
 
-          <button className="flex items-center gap-2 text-red-500 hover:text-red-600">
+          <button onClick={handleLogOut} className="cursor-pointer flex items-center gap-2 text-red-500 hover:text-red-600">
             <LogOut size={18} /> Logout
           </button>
         </aside>

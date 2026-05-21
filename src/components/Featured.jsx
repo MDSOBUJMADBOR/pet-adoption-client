@@ -9,7 +9,7 @@ const courses = await FetchGetAllPets();
 console.log(courses,'sob');
           return (
                     <div className='px-10 py-10'>
- <h1 className='font-bold text-3xl my-3'>Featured Pets</h1>  
+ <h1 className='font-bold text-3xl my-3 '>Featured Pets</h1>  
 
 
 

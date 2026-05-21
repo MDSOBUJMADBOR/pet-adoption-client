@@ -86,7 +86,7 @@ const Featured = () => {
         {/* SPECIES FILTER */}
         <div>
           <h1 className="text-gray-400 text-lg mb-2">
-            Filter by species
+            Filter by species 
           </h1>
 
           <Dropdown>
