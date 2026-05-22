@@ -17,22 +17,35 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 
 const LoginPage = () => {
+
+
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+// const formData = new FormData(e.currentTarget);
+// const loginData = Object.fromEntries(formData.entries());
+const email = e.target.email.value;
+const password = e.target.password.value;
 
-    const formData = new FormData(e.currentTarget);
-    const loginData = Object.fromEntries(formData.entries());
+
+// const { data: tokenData } = await authClient.token()
+// console.log(tokenData);
 
     try {
       const { data, error } = await authClient.signIn.email({
-        email: loginData.email,
-        password: loginData.password,
+        // email: loginData.email,
+        // password: loginData.password,
+        email,
+        password,
         callbackURL: "/",
+
       });
+
+
 
       if (error) {
         alert(error.message || "Login failed ❌");

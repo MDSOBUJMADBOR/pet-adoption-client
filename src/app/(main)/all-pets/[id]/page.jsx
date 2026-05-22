@@ -11,28 +11,11 @@ import { ArrowLeft } from 'lucide-react';
 export default async  function PetAdoptionPage({params}) {
   const {id} = await params;
   const course = await fetchSingleCourse(id)
-  const {_id, petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price } = course;
-  console.log(course);
+  const {_id, petName,age,gender,image,healthStatus,location ,price } = course;
+  // console.log(course);
 
 
-  // const [formData, setFormData] = useState({
-  //   petName: 'Bruno',
-  //   yourName: 'John Doe',
-  //   yourEmail: 'john.doe@email.com',
-  //   pickupDate: '',
-  //   message: '',
-  // });
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prev => ({ ...prev, [name]: value }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   alert('Adoption request submitted successfully! 🎉');
-  //   console.log('Form Data:', formData);
-  // };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
@@ -175,7 +158,7 @@ export default async  function PetAdoptionPage({params}) {
                 Adopt Now
               </button>
             </form> */}
-            <FormDetails></FormDetails>
+            <FormDetails course={course}></FormDetails>
 
             <p className="text-center text-xs text-gray-500 mt-6">
               Your information is safe with us

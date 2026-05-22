@@ -11,7 +11,7 @@ const AddPetPage = () => {
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
-
+console.log(user,'user');
   // 🔐 Private Route
   useEffect(() => {
     if (!user) {
@@ -20,35 +20,110 @@ const AddPetPage = () => {
   }, [user]);
 
   // ✅ Form Submit
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+//   const onSubmit = async (e) => {
+//     e.preventDefault();
+//     setLoading(true);
 
-    const form = e.target;
+//     const form = e.target;
 
-    const petData = {
-      petName: form.petName.value,
-      species: form.species.value,
-      breed: form.breed.value,
-      age: Number(form.age.value),
-      gender: form.gender.value,
-      image: form.image.value,
-      healthStatus: form.healthStatus.value,
-      vaccinationStatus: form.vaccinationStatus.value,
-      location: form.location.value,
-      adoptionFee: Number(form.adoptionFee.value),
-      description: form.description.value,
-      ownerEmail: user?.email,
-    };
+//     const petData = {
+//       petName: form.petName.value,
+//       species: form.species.value,
+//       breed: form.breed.value,
+//       age: Number(form.age.value),
+//       gender: form.gender.value,
+//       image: form.image.value,
+//       healthStatus: form.healthStatus.value,
+//       vaccinationStatus: form.vaccinationStatus.value,
+//       location: form.location.value,
+//       adoptionFee: Number(form.adoptionFee.value),
+//       description: form.description.value,
+//       ownerEmail: user?.email,
 
-    // 🔥 Console Output
-    console.log("Pet Data 👉", petData);
+   
+//     };
 
-    // 👉 future API call এখানে দিবা
-    // await fetch(...)
+//     // 🔥 Console Output
+//     console.log("Pet Data 👉", petData);
 
-    setLoading(false);
+//    const res = await fetch('http://localhost:8080/addpet' , {
+//   method: "POST",
+//   headers: {
+//       'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(petData),
+// })
+// const data = await res.json();
+// console.log(data,'data')
+
+
+
+//  alert("✅ Pet Added Successfully");
+//       router.push("/");
+//     } catch (error) {
+//       console.log(error);
+//       alert("❌ Error adding pet");
+//     } finally {
+//       setLoading(false);
+//     }
+
+
+//     setLoading(false);
+//   };
+
+const onSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!user) {
+    alert("Login first!");
+    return;
+  }
+
+  setLoading(true);
+
+  const form = e.target;
+
+  const petData = {
+    petName: form.petName.value,
+    species: form.species.value,
+    breed: form.breed.value,
+    age: Number(form.age.value),
+    gender: form.gender.value,
+    image: form.image.value,
+    healthStatus: form.healthStatus.value,
+    vaccinationStatus: form.vaccinationStatus.value,
+    location: form.location.value,
+    adoptionFee: Number(form.adoptionFee.value),
+    description: form.description.value,
+    ownerEmail: user.email,
   };
+
+  try {
+    const res = await fetch("http://localhost:8080/courses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(petData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to add pet");
+    }
+
+    const data = await res.json();
+    console.log(data);
+
+    alert("✅ Pet Added Successfully");
+    router.push("/");
+  } catch (error) {
+    console.log(error);
+    alert("❌ Error adding pet");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center p-4">
@@ -110,7 +185,7 @@ const AddPetPage = () => {
 
             <div className="space-y-1 w-full">
               <p className="text-sm font-semibold text-slate-600">Adoption Fee</p>
-              <Input className="w-full" name="adoptionFee" type="number" placeholder="৳" variant="bordered" required />
+              <Input className="w-full" name="adoptionFee" type="number" placeholder="$" variant="bordered" required />
             </div>
 
             <div className="space-y-1 w-full">
@@ -145,6 +220,7 @@ const AddPetPage = () => {
             <Button
               type="submit"
               isLoading={loading}
+          
               className="flex-1 h-14 rounded-2xl font-bold bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-lg"
             >
               {loading ? "Adding..." : "Add Pet 🚀"}

@@ -26,7 +26,7 @@ const Featured = () => {
     loadPets();
   }, []);
 
-  // ✅ FULL FILTER + SORT FLOW (FIXED)
+  // ✅ FULL FILTER + SORT FLOW (FIXED) 
   let filteredPets = [...courses];
 
   // 🔍 SEARCH (by petName)

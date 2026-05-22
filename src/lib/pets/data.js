@@ -20,10 +20,16 @@ export const fetchSingleCourse = async (id) => {
   return data;
 };
 
+export const getRequest = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request`);
+  const data = await res.json(); 
+  return data;
+};
+
+
 
 // import PetDetailsClient from './PetDetailsClient';
 // import { fetchSingleCourse } from '@/lib/pets/data';
-
 // export default async function PetDetaisPage({ params }) {
 //   const { id } = params;
 
