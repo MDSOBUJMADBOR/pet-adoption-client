@@ -14,7 +14,7 @@ export default async  function PetAdoptionPage({params}) {
   const {_id, petName,age,gender,image,healthStatus,location ,price } = course;
   // console.log(course);
 
-
+ 
 
 
   return (

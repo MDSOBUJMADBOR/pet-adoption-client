@@ -28,6 +28,8 @@ export const getRequest = async () => {
 
 
 
+
+
 // import PetDetailsClient from './PetDetailsClient';
 // import { fetchSingleCourse } from '@/lib/pets/data';
 // export default async function PetDetaisPage({ params }) {

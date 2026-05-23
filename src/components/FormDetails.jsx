@@ -5,18 +5,20 @@ import { useEffect, useState } from 'react';
 
 
 const FormDetails = ({course}) => {
-console.log(course,'course');
+// console.log(course,'course');
 const { data : session} = authClient.useSession();
 const user = session?.user;
 
-console.log(user,'user');
- const [formData, setFormData] = useState({ 
-  
+// console.log(user,'user');
+ const [formData, setFormData] = useState({   
     petName: course?.petName,
     yourName:"",
     yourEmail: "",
     pickupDate: '',
     message: '',
+     createdAt: new Date(),
+     status:['Approved','Pending','Rejected'],
+
   });
 
 
@@ -42,7 +44,7 @@ useEffect(() => {
     e.preventDefault();
  formData.userId = user.id
     alert('Adoption request submitted successfully! 🎉');
-    console.log('Form Data:', formData);
+    // console.log('Form Data:', formData);
 
 const res = await fetch('http://localhost:8080/request' , {
   method: "POST",
@@ -58,61 +60,7 @@ const data = await res.json();
 
 
           return (
-//                     <div>
-//  <form  className="space-y-5">
-
-//               <input
-//                 name={user?.name}
-//                value={user?.name || ""}
-//                 disabled
-//                 className="w-full p-3 border rounded-xl"
-//               />
-
-//               <input
-//                 name="yourName"
-//                 placeholder="Your Name"
-               
-//                 className="w-full p-3 border rounded-xl"
-//                 required
-//               />
-
-//               <input
-//                 name="yourEmail"
-//                 type="email"
-//                 placeholder="Your Email"
                 
-//                 className="w-full p-3 border rounded-xl"
-//                 required
-//               />
-
-//               <input
-//                 type="date"
-//                 name="pickupDate"
-              
-//                 className="w-full p-3 border rounded-xl"
-//                 required
-//               />
-
-//               <textarea
-//                 name="message"
-//                 placeholder="Message"
-               
-//                 rows={4}
-//                 className="w-full p-3 border rounded-xl"
-//               />
-
-//               <button
-//                 type="submit"
-//                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl"
-//               >
-//                 Adopt Now
-//               </button>
-
-//             </form>
-
-
-
-//                     </div>
 
   <form onSubmit={handleSubmit} className="space-y-6 flex-1">
               <div>
