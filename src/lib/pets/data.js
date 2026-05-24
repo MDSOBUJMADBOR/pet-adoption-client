@@ -1,4 +1,8 @@
-// import PetDetails from "@/app/(main)/all-pets/[id]/page";
+
+// import { authClient } from "../auth-client";
+
+// const { data : session} = authClient.useSession();
+// const user = session?.user; 
 
 
 export const getAllPets = async () => {
@@ -13,18 +17,23 @@ export const FetchGetAllPets = async () => {
   return data;
 };
 
-export const fetchSingleCourse = async (id) => {
+export const fetchSingleCourse = async (id) => { 
   console.log(id);
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`);
   const data = await res.json();
   return data;
 };
 
-export const getRequest = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request`);
-  const data = await res.json(); 
-  return data;
-};
+// export const getRequest = async () => {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${user?.email}`);
+//   const data = await res.json(); 
+//   return data;
+// };
+// export const getRequest = async () => {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${user?.email}`);
+//   const data = await res.json(); 
+//   return data;
+// };
 
 
 

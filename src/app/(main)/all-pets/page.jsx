@@ -50,7 +50,6 @@ const Featured = () => {
 
     if (sortBy === "low-high") return feeA - feeB;
     if (sortBy === "high-low") return feeB - feeA;
-
     return 0;
   });
 

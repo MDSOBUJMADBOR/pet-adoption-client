@@ -93,10 +93,12 @@ const onSubmit = async (e) => {
     healthStatus: form.healthStatus.value,
     vaccinationStatus: form.vaccinationStatus.value,
     location: form.location.value,
-    adoptionFee: Number(form.adoptionFee.value),
+    adoptionFee: form.adoptionFee.value,
     description: form.description.value,
     ownerEmail: user.email,
-  };
+  }; 
+
+console.log(petData,'petData');
 
   try {
     const res = await fetch("http://localhost:8080/courses", {

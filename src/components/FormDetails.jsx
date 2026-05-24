@@ -18,7 +18,6 @@ const user = session?.user;
     message: '',
      createdAt: new Date(),
      status:['Approved','Pending','Rejected'],
-
   });
 
 

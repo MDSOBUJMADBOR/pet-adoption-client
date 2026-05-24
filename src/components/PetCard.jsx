@@ -4,11 +4,13 @@ import Image from "next/image";
 import { MapPin, DollarSign } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
-
+ 
 const PetCard = ({course}) => { 
 // console.log(course,'course');
-const {_id, petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price } = course;
+const {_id, petName,species,breed,age,gender,image,healthStatus,location, ownerEmail ,price,adoptionFee } = course;
 console.log(_id);
+
+console.log(price,'courses');
 
   return (
     <div className=" rounded-2xl  shadow-md border bg-white overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
@@ -55,7 +57,7 @@ console.log(_id);
         {/* Price */}
         <div className="flex items-center gap-2 text-gray-800 font-medium">
           <DollarSign size={16} className="text-red-500" />
-          ${price}
+          {adoptionFee}
         </div> 
       </div>
 

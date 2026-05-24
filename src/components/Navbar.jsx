@@ -25,7 +25,7 @@ const navItems = [
 path: "/",
 text: "Home"
  },
- {
+ { 
 path: "/all-pets", 
 text: "All Pets"
  },
@@ -70,8 +70,8 @@ text: "All Pets"
 const [open,setOpen] = useState(false)
 const router = useRouter();
 const { data : session} = authClient.useSession();
-const user = session?.user;
-
+const user = session?.user; 
+console.log(user,"user123");
 const handleLogOut = async () => {
   await authClient.signOut();
   router.push("/")

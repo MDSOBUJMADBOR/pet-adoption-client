@@ -9,10 +9,10 @@ import { Button } from '@heroui/react';
 import { ArrowLeft } from 'lucide-react';
 
 export default async  function PetAdoptionPage({params}) {
-  const {id} = await params;
+  const { id } = await params;
   const course = await fetchSingleCourse(id)
-  const {_id, petName,age,gender,image,healthStatus,location ,price } = course;
-  // console.log(course);
+  // const { petName,age,gender,image,healthStatus,location ,price } = course;
+  console.log(course,'course');
 
  
 
@@ -31,7 +31,7 @@ export default async  function PetAdoptionPage({params}) {
           <div className="p-8 lg:p-12">
             <div className="relative h-[420px] w-full rounded-2xl overflow-hidden mb-8">
               <Image
-                src={image}
+                src={course?.image}
                 alt="Bruno the Golden Retriever"
                 fill
                 className="object-cover"
@@ -41,25 +41,25 @@ export default async  function PetAdoptionPage({params}) {
 
             <div className="space-y-6">
               <div>
-                <h2 className="text-4xl font-bold text-amber-900">{petName}</h2>
+                <h2 className="text-4xl font-bold text-amber-900">{course?.petName}</h2>
                 <p className="text-xl text-amber-700">Golden Retriever</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-amber-50 p-4 rounded-2xl">
                   <p className="text-sm text-amber-600">Age</p>
-                  <p className="text-2xl font-semibold">{age} Years</p>
+                  <p className="text-2xl font-semibold">{course?.age} Years</p>
                 </div>
                 <div className="bg-amber-50 p-4 rounded-2xl">
                   <p className="text-sm text-amber-600">Gender</p>
-                  <p className="text-2xl font-semibold">{gender}</p>
+                  <p className="text-2xl font-semibold">{course?.gender}</p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="flex justify-between items-center py-3 border-b">
                   <span className="text-gray-600">Health Status</span>
-                  <span className="font-medium text-emerald-600">{healthStatus}</span>
+                  <span className="font-medium text-emerald-600">{course?.healthStatus}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b">
                   <span className="text-gray-600">Vaccination Status</span>
@@ -67,11 +67,11 @@ export default async  function PetAdoptionPage({params}) {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b">
                   <span className="text-gray-600">Location</span>
-                  <span className="font-medium">{location}</span>
+                  <span className="font-medium">{course?.location}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b">
                   <span className="text-gray-600">Adoption Fee</span>
-                  <span className="font-bold text-xl">${price}</span>
+                  <span className="font-bold text-xl">${course?.price}</span>
                 </div>
               </div>
 
