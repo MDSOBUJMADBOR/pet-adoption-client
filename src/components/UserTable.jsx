@@ -8,6 +8,7 @@ import Cancel from './Cancel';
 export const getRequest = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${user?.email}`);
   const data = await res.json(); 
+  console.log(data,'data');
   return data;
 };
 

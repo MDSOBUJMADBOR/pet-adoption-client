@@ -4,7 +4,7 @@ import Navbar2 from "@/components/Navbar2";
 import { authClient } from "@/lib/auth-client";
 import { FileText, Plus, Heart, LogOut, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; 
 
 import { useState } from "react";
 

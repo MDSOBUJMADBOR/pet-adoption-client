@@ -1,5 +1,4 @@
 "use client"
-
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/cat.png"
@@ -7,8 +6,6 @@ import MyNavLink from "./MyNavLink";
 import { LayoutDashboard, LogOut, Menu, User, X } from 'lucide-react';
 import { useState } from "react";
 import { Button } from "@heroui/react";
-
-
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import MyNavLink1 from "./MyNavLink1";
@@ -71,7 +68,7 @@ const [open,setOpen] = useState(false)
 const router = useRouter();
 const { data : session} = authClient.useSession();
 const user = session?.user; 
-console.log(user,"user123");
+// console.log(user,"user123");
 const handleLogOut = async () => {
   await authClient.signOut();
   router.push("/")
@@ -108,9 +105,6 @@ navItems.map((item,index) => (<MyNavLink key={index} href={item.path}>
 </MyNavLink>
 ))}
 </ul>
-
-
-
 
 {/* Mobile device start */}
 
@@ -167,14 +161,9 @@ navItem2.map((item,index) => (<MyNavLink2 key={index} href={item.path}>
 <Button onClick={handleLogOut} className="w-full px-7 py-2 mx-auto">Log Out</Button>
 
 </>
-
 }
  </ul>
-
-
-
 </div>
-
 
 
 

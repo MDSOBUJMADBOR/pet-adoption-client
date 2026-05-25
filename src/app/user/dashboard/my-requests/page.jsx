@@ -1,10 +1,8 @@
 
-
-
 import UserTable from '@/components/UserTable';
 import React from 'react';
 
-const MyRequestsPage = async() => {
+const MyRequestsPage = async() => { 
    
           return (
                     <div>
@@ -12,6 +10,7 @@ const MyRequestsPage = async() => {
 
 
 <UserTable></UserTable>
+
 
 
                     </div>
