@@ -68,7 +68,7 @@ const [open,setOpen] = useState(false)
 const router = useRouter();
 const { data : session} = authClient.useSession();
 const user = session?.user; 
-// console.log(user,"user123");
+// console.log(user,"user12355");
 const handleLogOut = async () => {
   await authClient.signOut();
   router.push("/")

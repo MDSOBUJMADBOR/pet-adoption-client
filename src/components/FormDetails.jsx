@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const FormDetails = ({course}) => {
 // console.log(course,'course');
-const { data : session} = authClient.useSession();
+const { data : session} = authClient.useSession(); 
 const user = session?.user;
 
 // console.log(user,'user');
@@ -39,11 +39,11 @@ useEffect(() => {
   };
  
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {  
     e.preventDefault();
  formData.userId = user.id
     alert('Adoption request submitted successfully! 🎉');
-    // console.log('Form Data:', formData);
+    console.log('Form Data:', formData);
 
 const res = await fetch('http://localhost:8080/request' , {
   method: "POST",

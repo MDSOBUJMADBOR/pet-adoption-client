@@ -19,67 +19,16 @@ console.log(user,'user');
     }
   }, [user]);
 
-  // ✅ Form Submit
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-
-//     const form = e.target;
-
-//     const petData = {
-//       petName: form.petName.value,
-//       species: form.species.value,
-//       breed: form.breed.value,
-//       age: Number(form.age.value),
-//       gender: form.gender.value,
-//       image: form.image.value,
-//       healthStatus: form.healthStatus.value,
-//       vaccinationStatus: form.vaccinationStatus.value,
-//       location: form.location.value,
-//       adoptionFee: Number(form.adoptionFee.value),
-//       description: form.description.value,
-//       ownerEmail: user?.email,
-
-   
-//     };
-
-//     // 🔥 Console Output
-//     console.log("Pet Data 👉", petData);
-
-//    const res = await fetch('http://localhost:8080/addpet' , {
-//   method: "POST",
-//   headers: {
-//       'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify(petData),
-// })
-// const data = await res.json();
-// console.log(data,'data')
-
-
-
-//  alert("✅ Pet Added Successfully");
-//       router.push("/");
-//     } catch (error) {
-//       console.log(error);
-//       alert("❌ Error adding pet");
-//     } finally {
-//       setLoading(false);
-//     }
-
-
-//     setLoading(false);
-//   };
 
 const onSubmit = async (e) => {
   e.preventDefault();
 
-  if (!user) {
-    alert("Login first!");
-    return;
-  }
+  // if (!user) {
+  //   alert("Login first!");
+  //   return;
+  // }
 
-  setLoading(true);
+  // setLoading(true);
 
   const form = e.target;
 
@@ -104,7 +53,7 @@ console.log(petData,'petData');
     const res = await fetch("http://localhost:8080/courses", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json' 
       },
       body: JSON.stringify(petData),
     });
@@ -114,7 +63,7 @@ console.log(petData,'petData');
     }
 
     const data = await res.json();
-    console.log(data);
+    console.log(data,'halima');
 
     alert("✅ Pet Added Successfully");
     router.push("/");

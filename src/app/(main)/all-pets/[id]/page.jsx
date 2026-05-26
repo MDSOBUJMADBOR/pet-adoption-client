@@ -91,73 +91,7 @@ export default async  function PetAdoptionPage({params}) {
               <p className="text-gray-500 mt-1">Fill out the form to adopt Bruno</p>
             </div>
 
-            {/* <form onSubmit={handleSubmit} className="space-y-6 flex-1">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pet Name</label>
-                <input
-                  type="text"
-                  name="petName"
-                  // value={formData.petName}
-                  disabled
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                <input
-                  type="text"
-                  name="yourName"
-                  // value={formData.yourName}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                <input
-                  type="email"
-                  name="yourEmail"
-                  // value={formData.yourEmail}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Date</label>
-                <input
-                  type="date"
-                  name="pickupDate"
-                  // value={formData.pickupDate}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea
-                  name="message"
-                  // value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="Write a message..."
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-3xl focus:outline-none focus:border-amber-500 resize-y"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 transition-colors text-white font-semibold py-4 rounded-2xl text-lg shadow-lg shadow-emerald-500/30 mt-4"
-              >
-                Adopt Now
-              </button>
-            </form> */}
+          
             <FormDetails course={course}></FormDetails>
 
             <p className="text-center text-xs text-gray-500 mt-6">

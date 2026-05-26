@@ -8,7 +8,7 @@ const MyRequestsPage = async() => {
           return (
                     <div>
 <h2 className='text-4xl font-bold text-green-500'>My Adoption Requests</h2>
-<p>sobuj</p>
+
 
 <UserTable></UserTable>
 

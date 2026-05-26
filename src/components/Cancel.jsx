@@ -17,7 +17,7 @@ const {_id,userId} = user;
 
     });
     const data = await res.json();
-    redirect('/')
+    redirect('/user/dashboard')
     // console.log(data,'data');
   };
 
