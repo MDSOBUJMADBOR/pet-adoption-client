@@ -60,7 +60,7 @@ const handleLogOut = async () => {
                 <div className={menuClass("/user/dashboard/add-pet")}>
                   <Plus size={18} /> Add Pet
                 </div>
-              </Link>
+              </Link> 
 
               <Link href="/user/dashboard/my-listings" onClick={() => setOpen(false)}>
                 <div className={menuClass("/user/dashboard/my-listings")}>

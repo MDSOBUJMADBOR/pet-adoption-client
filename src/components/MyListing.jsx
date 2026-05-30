@@ -1,11 +1,16 @@
-import React from 'react';
+// import React from 'react';
 
-const MyListing = () => {
-  return (
-    <div>
-      my listing
-    </div>
-  );
-};
+// const MyListingPage = ({item}) => {
+//   console.log(item,'item');
+//   return (
+//     <div>
 
-export default MyListing;
+   
+
+     
+
+//     </div>
+//   );
+// };
+
+// export default MyListingPage;

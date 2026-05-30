@@ -24,11 +24,14 @@ export const fetchSingleCourse = async (id) => {
   return data;
 };
 
+
+
 // export const getRequest = async () => {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${user?.email}`);
 //   const data = await res.json(); 
 //   return data;
 // };
+
 // export const getRequest = async () => {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${user?.email}`);
 //   const data = await res.json(); 

@@ -108,7 +108,7 @@ const password = e.target.password.value;
               <Label>Email</Label>
               <Input placeholder="Enter Your Email" />
               <FieldError />
-            </TextField>
+            </TextField> 
 
             {/* Password */}
             <TextField

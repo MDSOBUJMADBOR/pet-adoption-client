@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "@heroui/react";
-import { Eye } from "lucide-react";
+import { Eye, Trash } from "lucide-react"; 
 import Link from "next/link";
 import Cancel from "./Cancel";
 import { authClient } from "@/lib/auth-client"; 
 import { format } from "date-fns";
 
-
+ 
 const UserTable = () => {
 
   const { data: session } = authClient.useSession();
@@ -81,8 +81,10 @@ const UserTable = () => {
                   <Table.Cell></Table.Cell>
                   <Table.Cell></Table.Cell>
                   <Table.Cell><Link href={'/all-pets'}>  
-                             
-               <Button> No Request</Button>       
+                
+                 
+               <Button > No Request   <Trash className="" /> </Button>   
+                    
                   
                   </Link></Table.Cell>
                   <Table.Cell></Table.Cell>
