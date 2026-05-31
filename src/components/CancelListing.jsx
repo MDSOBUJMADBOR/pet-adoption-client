@@ -1,5 +1,5 @@
 import { AlertDialog, Button } from '@heroui/react';
-import { CircleX } from 'lucide-react';
+import { CircleX, X } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
@@ -23,7 +23,7 @@ console.log(user,'userlist');
           return (
                     <div>
  <AlertDialog>
-      <Button className="rounded-md" variant="danger">  <CircleX /> Cancel</Button>
+      <Button className="rounded-md" variant="danger">  <X /></Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">

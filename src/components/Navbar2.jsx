@@ -12,7 +12,8 @@ import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import MyNavLink1 from "./MyNavLink1";
-import MyNavLink2 from "./MyNavLink2";
+import MyNavLink2 from "./MyNavLink2"; 
+
 
 
 
@@ -43,6 +44,7 @@ const user = session?.user;
     Pet Adoption Platform
   </h3>
 </Link>
+ 
         </div>
  <div className="hidden md:flex gap-2 items-center  "> 
 <Image

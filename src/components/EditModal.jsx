@@ -7,7 +7,7 @@ const EditModal = () => {
           return (
                     <div>
   <Modal>
-<Button>
+<Button className='rounded-md'>
 <SquarePen size={16} />
 </Button>
       <Modal.Backdrop>

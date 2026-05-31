@@ -34,12 +34,12 @@ console.log(user,'user');
   }, [user]);
 
   return (
-                    <div>
+                    <div className='space-y-2'>
       <h1 className='text-4xl font-bold text-green-500'>My Listings</h1>
 
        <div className='flex justify-between'>
         <h1 className='font-bold text-3xl'>Total: {courses.length}</h1> 
-        <Button><Link href={'/user/dashboard/add-pet'}>Add New Pet</Link></Button>
+        <Button><Link href={'/user/dashboard/add-pet'}> + Add New Pet</Link></Button>
        </div>
        
      
@@ -48,14 +48,14 @@ console.log(user,'user');
     courses.length > 0 ? (
       
       <div>
-        <div className='grid grid-cols-1 lg:grid-cols-4  items-center text-center'>
+        <div className='grid grid-cols-1 lg:grid-cols-4  items-center text-center space-y-2'>
           <h1 className='font-semibold text-xl'>Pet</h1>
           <h1 className='font-semibold text-xl'>Fee</h1>
           <h1 className='font-semibold text-xl'>Status</h1>
           <h1 className='font-semibold text-xl'>Actions</h1>
         </div>
         {courses.map((item) => (
-          <div key={item._id} className='grid grid-cols-1 lg:grid-cols-4  items-center  bg-white p-2 rounded-md text-center' >
+          <div key={item._id} className='grid grid-cols-1 lg:grid-cols-4  items-center  bg-white p-2 rounded-md text-center m-2 space-y-3' >
             {/* 
             <p>{item.pickupDate}</p> */}
             <div className='flex gap-2'>
@@ -66,18 +66,28 @@ console.log(user,'user');
       height={50}
       alt="Image"
     />
-    <h2 className='font-bold text-lg'>{item.petName}</h2>
+    <h2 className='font-bold '>{item.petName}</h2>
             </div>
 <div>
-  <h1>${item.adoptionFee}</h1>
+  <h1 className='font-bold'>${item.adoptionFee}</h1>
 </div>
 <div>
-  <h1>{item.status}</h1>
+  <Button
+    className={`${
+      item.status === "available"
+        ? "bg-green-500 text-white"
+        : item.status === "adopted"
+        ? "bg-red-500 text-white"
+        : "bg-gray-400 text-white"
+    }`}
+  >
+    <h1>{item.status}</h1>
+  </Button>
 </div>
 
             <div className="flex gap-2">
               <Link href={`/all-pets/${item._id}`}>
-                <Button>
+                <Button className='rounded-md'>
                   <Eye size={16} />
                 </Button>
               </Link>
