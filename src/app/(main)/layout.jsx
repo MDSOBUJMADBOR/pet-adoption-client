@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import Navbar2 from '@/components/Navbar2';
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 const DashboardLayout = ({children}) => {
   return (
@@ -9,6 +9,7 @@ const DashboardLayout = ({children}) => {
 <Navbar></Navbar>
      {children}
  <Footer></Footer>
+  <Toaster />
   </>        
        
      

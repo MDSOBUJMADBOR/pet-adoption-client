@@ -1,6 +1,9 @@
 'use client'
 
-import Cancel from '@/components/Cancel';
+
+import CancelListing from '@/components/CancelListing';
+import EditModal from '@/components/EditModal';
+import UserRountPage from '@/components/UserRountPage';
 import { authClient } from '@/lib/auth-client';
 import { Button, Table } from '@heroui/react';
 import { Eye, SquarePen, Trash, UserRound } from 'lucide-react';
@@ -32,20 +35,35 @@ console.log(user,'user');
 
   return (
                     <div>
-      <h1>total: {courses.length}</h1>                        
+      <h1 className='text-4xl font-bold text-green-500'>My Listings</h1>
+
+       <div className='flex justify-between'>
+        <h1 className='font-bold text-3xl'>Total: {courses.length}</h1> 
+        <Button><Link href={'/user/dashboard/add-pet'}>Add New Pet</Link></Button>
+       </div>
+       
+                       
 
 
- <div>
+
+
   {
     courses.length > 0 ? (
+      
       <div>
+        <div className='grid grid-cols-1 lg:grid-cols-3  items-center text-center'>
+          <h1>Pet</h1>
+          <h1>Fee</h1>
+          <h1>Actions</h1>
+        </div>
         {courses.map((item) => (
-          <div key={item._id} className='flex gap-5 justify-between'>
+          <div key={item._id} className='grid grid-cols-1 lg:grid-cols-3  items-center  border border-gray-500 text-center' >
             {/* 
             <p>{item.pickupDate}</p> */}
             <div className='flex gap-2'>
              <Image
       src={item.image}
+      className='rounded-lg'
       width={50}
       height={50}
       alt="Image"
@@ -62,28 +80,43 @@ console.log(user,'user');
                   <Eye size={16} />
                 </Button>
               </Link>
-               <Button>
-                <UserRound size={16} />
-               </Button>
-              <Button>
-                <SquarePen size={16} />
-              </Button>
+               <UserRountPage></UserRountPage>
+             <EditModal></EditModal>
 
-              <Cancel user={item} />
+             <CancelListing user={item}></CancelListing>
             </div>
           </div>
         ))}
       </div>
     ) : (
       <div>
-        <h2>No Data Found</h2>
+      <div class="flex justify-center items-center h-72">
+  <div class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-sm">
+    
+    <div class="text-5xl mb-3">📭</div>
+
+    <h2 class="text-xl font-bold text-gray-800">
+      No Data Found
+    </h2>
+
+    <p class="text-gray-500 mt-2 text-sm">
+      We couldn’t find any results. Try adding something new.
+    </p>
+
+    {/* <button class="mt-5 px-5 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition">
+     
+    </button> */}
+    <Button><Link href={'/user/dashboard/add-pet'}> Add Data</Link></Button>
+
+  </div>
+</div>
       </div>
     )
   }
 </div>
 
 
-                    </div>
+                  
           );
 };
 

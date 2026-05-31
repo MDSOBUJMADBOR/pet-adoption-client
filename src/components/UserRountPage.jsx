@@ -1,31 +1,12 @@
-'use client'
 import { AlertDialog, Button } from '@heroui/react';
-import { CircleX } from 'lucide-react';
-import { redirect } from 'next/navigation';
+import { CircleX, UserRound } from 'lucide-react';
 import React from 'react';
 
-const Cancel = ({user}) => {
-// console.log(user,'user');
-const {_id,userId} = user;
-
-  const handleDelete = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json", 
-      },
-
-    });
-    const data = await res.json();
-    redirect('/user/dashboard')
-    // console.log(data,'data');
-  };
-
-
+const UserRountPage = () => {
           return (
                     <div>
  <AlertDialog>
-      <Button className="rounded-md" variant="danger">  <CircleX /> Cancel</Button>
+      <Button className="rounded-md"> <UserRound></UserRound></Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">
@@ -44,18 +25,17 @@ const {_id,userId} = user;
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button onClick={handleDelete} slot="close" variant="danger">
+              <Button  slot="close" variant="danger">
                 Confirm Cancel 
               </Button>
             </AlertDialog.Footer> 
           </AlertDialog.Dialog>
         </AlertDialog.Container>
       </AlertDialog.Backdrop>
-    </AlertDialog>
-
+    </AlertDialog>  
 
                     </div>
           );
 };
 
-export default Cancel;
+export default UserRountPage;

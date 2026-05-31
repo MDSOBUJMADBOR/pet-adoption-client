@@ -71,14 +71,14 @@ export default async  function PetAdoptionPage({params}) {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b">
                   <span className="text-gray-600">Adoption Fee</span>
-                  <span className="font-bold text-xl">${course?.price}</span>
+                  <span className="font-bold text-xl">${course?.adoptionFee}</span>
                 </div>
               </div>
 
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">About Bruno</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Bruno is a very friendly and playful dog. He loves to be around people and is great with kids.
+                  {course?.description}
                 </p>
               </div>
             </div>

@@ -1,15 +1,14 @@
-'use client'
 import { AlertDialog, Button } from '@heroui/react';
 import { CircleX } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
-const Cancel = ({user}) => {
-// console.log(user,'user');
+const CancelListing = ({user}) => {
 const {_id,userId} = user;
+console.log(user,'userlist');
 
-  const handleDelete = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${_id}`, {
+ const handleDelete = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json", 
@@ -20,7 +19,6 @@ const {_id,userId} = user;
     redirect('/user/dashboard')
     // console.log(data,'data');
   };
-
 
           return (
                     <div>
@@ -53,9 +51,8 @@ const {_id,userId} = user;
       </AlertDialog.Backdrop>
     </AlertDialog>
 
-
                     </div>
           );
 };
 
-export default Cancel;
+export default CancelListing;

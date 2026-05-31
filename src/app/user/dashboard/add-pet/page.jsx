@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Input, TextArea, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const AddPetPage = () => {
   const router = useRouter();
@@ -64,9 +65,9 @@ console.log(petData,'petData');
 
     const data = await res.json();
     console.log(data,'halima');
-
-    alert("✅ Pet Added Successfully");
-    router.push("/");
+ toast("✅ Pet Added Successfully");
+   
+    router.push("/user/dashboard/my-listings");
   } catch (error) {
     console.log(error);
     alert("❌ Error adding pet");
