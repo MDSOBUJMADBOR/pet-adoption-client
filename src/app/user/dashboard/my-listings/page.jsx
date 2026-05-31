@@ -32,13 +32,22 @@ console.log(user,'user');
     };
     getCourses();
   }, [user]);
+  const availableCount = courses.filter(
+  (item) => item.status === "available"
+).length;
+
+const adoptedCount = courses.filter(
+  (item) => item.status === "adopted"
+).length;
 
   return (
                     <div className='space-y-2'>
       <h1 className='text-4xl font-bold text-green-500'>My Listings</h1>
 
-       <div className='flex justify-between'>
-        <h1 className='font-bold text-3xl'>Total: {courses.length}</h1> 
+       <div className='grid grid-cols-1 md:grid-cols-4  py-6  gap-5'>
+        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {courses.length}</h1> 
+        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Available : {availableCount}</h1> 
+        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Adopted: {adoptedCount}</h1> 
         <Button><Link href={'/user/dashboard/add-pet'}> + Add New Pet</Link></Button>
        </div>
        

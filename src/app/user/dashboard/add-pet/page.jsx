@@ -149,7 +149,7 @@ console.log(petData,'petData');
             </div>
             <div className="space-y-1 w-full">
               <p className="text-sm font-semibold text-slate-600">Status</p>
-              <Input className="w-full" name="status"   variant="bordered" required />
+              <Input className="w-full" name="status" placeholder="available or adopted"   variant="bordered" required />
             </div>
 
             <div className="space-y-1 md:col-span-2 w-full">
