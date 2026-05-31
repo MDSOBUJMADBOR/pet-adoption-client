@@ -22,7 +22,9 @@ const Featured = () => {
     const loadPets = async () => {
       const data = await getAllPets();
       setCourses(data);
-    };
+      
+    // console.log(data,'data1');
+     };
     loadPets();
   }, []);
 
@@ -44,14 +46,14 @@ const Featured = () => {
   );
 
   // 💰 SORT (FIXED & SAFE)
-  filteredPets.sort((a, b) => {
-    const feeA = Number(a.fee || a.price) || 0;
-    const feeB = Number(b.fee || b.price) || 0;
+   filteredPets.sort((a, b) => {
+  const feeA = Number(a.adoptionFee) || 0;
+  const feeB = Number(b.adoptionFee) || 0;
 
-    if (sortBy === "low-high") return feeA - feeB;
-    if (sortBy === "high-low") return feeB - feeA;
-    return 0;
-  });
+  if (sortBy === "low-high") return feeA - feeB;
+  if (sortBy === "high-low") return feeB - feeA;
+  return 0;
+});
 
   return (
     <div className="px-10 py-10">
