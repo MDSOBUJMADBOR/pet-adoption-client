@@ -42,22 +42,20 @@ console.log(user,'user');
         <Button><Link href={'/user/dashboard/add-pet'}>Add New Pet</Link></Button>
        </div>
        
-                       
-
-
-
+     
 
   {
     courses.length > 0 ? (
       
       <div>
-        <div className='grid grid-cols-1 lg:grid-cols-3  items-center text-center'>
-          <h1>Pet</h1>
-          <h1>Fee</h1>
-          <h1>Actions</h1>
+        <div className='grid grid-cols-1 lg:grid-cols-4  items-center text-center'>
+          <h1 className='font-semibold text-xl'>Pet</h1>
+          <h1 className='font-semibold text-xl'>Fee</h1>
+          <h1 className='font-semibold text-xl'>Status</h1>
+          <h1 className='font-semibold text-xl'>Actions</h1>
         </div>
         {courses.map((item) => (
-          <div key={item._id} className='grid grid-cols-1 lg:grid-cols-3  items-center  border border-gray-500 text-center' >
+          <div key={item._id} className='grid grid-cols-1 lg:grid-cols-4  items-center  bg-white p-2 rounded-md text-center' >
             {/* 
             <p>{item.pickupDate}</p> */}
             <div className='flex gap-2'>
@@ -68,10 +66,13 @@ console.log(user,'user');
       height={50}
       alt="Image"
     />
-    <h2 className='font-bold text-2xl'>{item.petName}</h2>
+    <h2 className='font-bold text-lg'>{item.petName}</h2>
             </div>
 <div>
   <h1>${item.adoptionFee}</h1>
+</div>
+<div>
+  <h1>{item.status}</h1>
 </div>
 
             <div className="flex gap-2">

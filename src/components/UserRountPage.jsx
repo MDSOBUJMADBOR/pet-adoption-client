@@ -10,7 +10,7 @@ const UserRountPage = () => {
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">
-            <AlertDialog.CloseTrigger />
+            <AlertDialog.CloseTrigger /> 
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
               <AlertDialog.Heading>Delete project permanently?</AlertDialog.Heading>

@@ -43,9 +43,12 @@ const onSubmit = async (e) => {
     healthStatus: form.healthStatus.value,
     vaccinationStatus: form.vaccinationStatus.value,
     location: form.location.value,
+    status: form.status.value,
     adoptionFee: form.adoptionFee.value,
     description: form.description.value,
     ownerEmail: user.email,
+     createdAt: new Date(),
+
   }; 
 
 console.log(petData,'petData');
@@ -80,7 +83,7 @@ console.log(petData,'petData');
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center p-4">
       
-      <div className="w-full max-w-4xl bg-white shadow-2xl rounded-3xl p-8">
+      <div className="w-full max-w-full bg-white shadow-2xl rounded-3xl p-8">
         
         <h2 className="text-3xl font-black text-center mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
           🐾 Add New Pet
@@ -143,6 +146,10 @@ console.log(petData,'petData');
             <div className="space-y-1 w-full">
               <p className="text-sm font-semibold text-slate-600">Owner Email</p>
               <Input className="w-full" value={user?.email || ""} readOnly variant="bordered" />
+            </div>
+            <div className="space-y-1 w-full">
+              <p className="text-sm font-semibold text-slate-600">Status</p>
+              <Input className="w-full" name="status"   variant="bordered" required />
             </div>
 
             <div className="space-y-1 md:col-span-2 w-full">
