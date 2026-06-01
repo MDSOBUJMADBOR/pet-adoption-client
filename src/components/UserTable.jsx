@@ -9,7 +9,7 @@ import { authClient } from "@/lib/auth-client";
 import { format } from "date-fns";
 
 const UserTable = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session } = authClient.useSession(); 
   const user = session?.user;
 
   const [request, setRequest] = useState([]);
@@ -77,12 +77,14 @@ const rejectedCount = request.filter(
   return (
     <div className="w-full">
 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 py-3">
-     <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {request.length}</h1> 
-  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Pending: {pendingCount}</h1>
-  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Approved: {approvedCount}</h1>
-  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Rejected: {rejectedCount}</h1>
+     <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {request.length}</h1> 
+  <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Pending: {pendingCount}</h1>
+  <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Approved: {approvedCount}</h1>
+  <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Rejected: {rejectedCount}</h1>
+ 
 </div>
-      {/* ================= DESKTOP TABLE ================= */}
+
+      {/* ================= DESKTOP TABLE ================= */} 
       <div className="hidden md:block overflow-x-auto">
         <Table className="min-w-[700px]">
           <Table.ScrollContainer>
@@ -122,7 +124,7 @@ const rejectedCount = request.filter(
 
                         <Table.Cell>
                           <div className="flex gap-3">
-                            <Link href={`/all-pets/${item.userId}`}>
+                            <Link href={`/all-pets/${item.petId}`}>
                               <Button className="rounded-md">
                                 <Eye size={16} /> View
                               </Button>

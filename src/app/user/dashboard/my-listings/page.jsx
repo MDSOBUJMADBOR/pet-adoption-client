@@ -14,7 +14,7 @@ import  { useEffect, useState } from 'react';
 const MyListing = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user; 
-console.log(user,'user');
+// console.log(user,'user');
   const [courses, setCourses] = useState([]); 
  
   useEffect(() => {
@@ -45,9 +45,9 @@ const adoptedCount = courses.filter(
       <h1 className='text-4xl font-bold text-green-500'>My Listings</h1>
 
        <div className='grid grid-cols-1 md:grid-cols-4  py-6  gap-5'>
-        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {courses.length}</h1> 
-        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Available : {availableCount}</h1> 
-        <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Adopted: {adoptedCount}</h1> 
+        <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {courses.length}</h1> 
+        <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Available : {availableCount}</h1> 
+        <h1 className='font-bold text-2xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Adopted: {adoptedCount}</h1> 
         <Button><Link href={'/user/dashboard/add-pet'}> + Add New Pet</Link></Button>
        </div>
        
@@ -101,7 +101,7 @@ const adoptedCount = courses.filter(
                 </Button>
               </Link>
                <UserRountPage></UserRountPage>
-             <EditModal></EditModal>
+             <EditModal item={item}></EditModal> 
 
              <CancelListing user={item}></CancelListing>
             </div>
@@ -109,28 +109,25 @@ const adoptedCount = courses.filter(
         ))}
       </div>
     ) : (
-      <div>
-      <div class="flex justify-center items-center h-72">
-  <div class="bg-white shadow-xl rounded-2xl p-8 text-center max-w-sm">
+      <div className="flex justify-center items-center h-72">
+  <div className="bg-white shadow-xl rounded-2xl p-8 text-center max-w-sm">
     
-    <div class="text-5xl mb-3">📭</div>
+    <div className="text-5xl mb-3">📭</div>
 
-    <h2 class="text-xl font-bold text-gray-800">
+    <h2 className="text-xl font-bold text-gray-800">
       No Data Found
     </h2>
 
-    <p class="text-gray-500 mt-2 text-sm">
+    <p className="text-gray-500 mt-2 text-sm">
       We couldn’t find any results. Try adding something new.
     </p>
 
-    {/* <button class="mt-5 px-5 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition">
-     
-    </button> */}
-    <Button><Link href={'/user/dashboard/add-pet'}> Add Data</Link></Button>
+    <Button>
+      <Link href={'/user/dashboard/add-pet'}> Add Data</Link>
+    </Button>
 
   </div>
 </div>
-      </div>
     )
   }
 </div>

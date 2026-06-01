@@ -1,143 +1,164 @@
-"use client"
-import { authClient } from '@/lib/auth-client';
-import { useEffect, useState } from 'react';
+"use client";
+import { authClient } from "@/lib/auth-client";
+import { useEffect, useState } from "react";
 
+const FormDetails = ({ course }) => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
-
-const FormDetails = ({course}) => {
-// console.log(course,'course');
-const { data : session} = authClient.useSession(); 
-const user = session?.user;
-
-// console.log(user,'user');
- const [formData, setFormData] = useState({   
-    petName: course?.petName,
-    yourName:"",
+  const [formData, setFormData] = useState({
+    petName: "",
+    yourName: "",
     yourEmail: "",
-    pickupDate: '',
-    message: '',
-     createdAt: new Date(),
-     status: {
-  type: String,
-  enum: ["Pending", "Approved", "Rejected"],
-  default: "Pending",
-}
+    pickupDate: "",
+    message: "",
+    createdAt: new Date(),
+    status: "pending",
+    ownerEmail: "",
   });
 
+  // ✅ Set initial data
+  useEffect(() => {
+    if (user && course) {
+      setFormData({
+        petName: course.petName,
+        petId: course._id,
+        yourName: user.name || "",
+        yourEmail: user.email || "",
+        pickupDate: "",
+        message: "",
+        createdAt: new Date(),
+        status: "pending",
+        ownerEmail: course.ownerEmail,
 
-
-// console.log(user?.name,'coursesss');  
-useEffect(() => {
-    if (user) {
-      setFormData(prev => ({
-        ...prev,
-        yourName: user.name || '',
-        yourEmail: user.email || '',
-      }));
+      });
     }
-  }, [user]);
- const handleChange = (e) => {
+  }, [user, course]);
+
+  // ✅ Handle input
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-   
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
- 
 
-  const handleSubmit = async (e) => {  
+  // ✅ Submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
- formData.userId = user.id
-    alert('Adoption request submitted successfully! 🎉');
-    console.log('Form Data:', formData);
 
-const res = await fetch('http://localhost:8080/request' , {
-  method: "POST",
-  headers: {
-      'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(formData),
-})
-const data = await res.json();
-// console.log(data);
+    // 🔴 Double protection
+    if (user?.email === course?.ownerEmail) {
+      alert("❌ You cannot adopt your own pet!");
+      return;
+    }
 
+    try {
+      const res = await fetch("http://localhost:8080/request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Adoption request submitted!");
+      } else {
+        alert(data.message || "❌ Failed to submit");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  // 🔥 ✅ OWNER হলে form show হবে না
+  if (user?.email === course?.ownerEmail) {
+    return (
+      <div className="flex items-center justify-center h-[300px]">
+        <div className="bg-white border rounded-2xl p-8 text-center shadow-md max-w-md">
+          <h2 className="text-xl font-bold text-red-500 mb-2">
+            This is your listing
+          </h2>
+          <p className="text-gray-600">
+            You cannot request adoption for your own pet.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-          return (
-                 
+  // ✅ Normal user form
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6 flex-1">
+      
+      {/* Pet Name */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Pet Name</label>
+        <input
+          type="text"
+          value={formData.petName}
+          disabled
+          className="w-full px-4 py-3 border rounded-2xl"
+        />
+      </div>
 
-  <form onSubmit={handleSubmit} className="space-y-6 flex-1">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pet Name</label>
-                <input
-                  type="text"
-                  name="petName"
-                  disabled
-                  value={course?.petName}
-                 
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                />
-              </div>
+      {/* Name */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Your Name</label>
+        <input
+          type="text"
+          value={formData.yourName}
+          disabled
+          className="w-full px-4 py-3 border rounded-2xl"
+        />
+      </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                <input
-                  type="text"
-                  name="yourName"
-                  value={user?.name}
-disabled
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
+      {/* Email */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Your Email</label>
+        <input
+          type="email"
+          value={formData.yourEmail}
+          disabled
+          className="w-full px-4 py-3 border rounded-2xl"
+        />
+      </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                <input
-                  type="email"
-                  name="yourEmail"
-                  disabled
-                  // value={formData.yourEmail}
-                    value={user?.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
+      {/* Pickup Date */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Pickup Date</label>
+        <input
+          type="date"
+          name="pickupDate"
+          value={formData.pickupDate}
+          onChange={handleChange}
+          className="w-full px-4 py-3 border rounded-2xl"
+          required
+        />
+      </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Date</label>
-                <input
-                  type="date"
-                  name="pickupDate"
-                  // value={formData.pickupDate}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:border-amber-500"
-                  required
-                />
-              </div>
+      {/* Message */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Message</label>
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          rows={4}
+          className="w-full px-4 py-3 border rounded-2xl"
+        />
+      </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea
-                  name="message"
-                  // value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="Write a message..."
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-3xl focus:outline-none focus:border-amber-500 resize-y"
-                />
-              </div>
-
-              <button
-           
-                type="submit"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 transition-colors text-white font-semibold py-4 rounded-2xl text-lg shadow-lg shadow-emerald-500/30 mt-4"
-              >
-                Adopt Now
-              </button>
-            </form> 
-          );
+      {/* Button */}
+      <button
+        type="submit"
+        className="w-full py-4 rounded-2xl text-white bg-emerald-600 hover:bg-emerald-700"
+      >
+        Adopt Now
+      </button>
+    </form>
+  );
 };
 
 export default FormDetails;

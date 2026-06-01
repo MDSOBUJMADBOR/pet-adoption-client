@@ -95,7 +95,7 @@ console.log(petData,'petData');
 
             <div className="space-y-1 w-full">
               <p className="text-sm font-semibold text-slate-600">Pet Name</p>
-              <Input className="w-full" name="petName" placeholder="Enter pet name" variant="bordered" required />
+              <Input className="w-full" name="petName" placeholder="Enter pet name" variant="bordered" required /> 
             </div>
 
             <div className="space-y-1 w-full">

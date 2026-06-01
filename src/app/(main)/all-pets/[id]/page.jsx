@@ -91,7 +91,7 @@ export default async  function PetAdoptionPage({params}) {
               <p className="text-gray-500 mt-1">Fill out the form to adopt Bruno</p>
             </div>
 
-          
+           
             <FormDetails course={course}></FormDetails>
 
             <p className="text-center text-xs text-gray-500 mt-6">
