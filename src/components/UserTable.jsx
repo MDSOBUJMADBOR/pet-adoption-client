@@ -32,14 +32,56 @@ const UserTable = () => {
     getRequest();
   }, [user]);
 
+  // ✅ Safe date
   const safeDate = (date) => {
     if (!date) return "N/A";
     return format(new Date(date), "dd MMM yyyy");
   };
 
+  // ✅ FIXED STATUS HANDLER (সব case handle করবে)
+  const getStatus = (status) => {
+    if (!status) return "Pending";
+
+    // যদি object আসে (wrong backend data)
+    if (typeof status === "object" && !Array.isArray(status)) {
+      return status.default || "Pending";
+    }
+
+    // যদি array আসে
+    if (Array.isArray(status)) {
+      return status[1] || "Pending";
+    }
+
+    // normal string
+    return status;
+  };
+
+  // ✅ color handler
+  const getStatusColor = (status) => {
+    if (status === "Approved") return "bg-green-500 text-white";
+    if (status === "Rejected") return "bg-red-500 text-white";
+    return "bg-yellow-500 text-white";
+  };
+  const pendingCount = request.filter(
+  (item) => getStatus(item.status) === "Pending"
+).length;
+
+const approvedCount = request.filter(
+  (item) => getStatus(item.status) === "Approved"
+).length;
+
+const rejectedCount = request.filter(
+  (item) => getStatus(item.status) === "Rejected"
+).length;
+
   return (
     <div className="w-full">
-
+<div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 py-3">
+     <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Total: {request.length}</h1> 
+  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Pending: {pendingCount}</h1>
+  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Approved: {approvedCount}</h1>
+  <h1 className='font-bold text-3xl bg-white border-2 border-gray-300 flex justify-center items-center h-[100px] w-[200px] rounded-lg'>Rejected: {rejectedCount}</h1>
+</div>
       {/* ================= DESKTOP TABLE ================= */}
       <div className="hidden md:block overflow-x-auto">
         <Table className="min-w-[700px]">
@@ -47,7 +89,9 @@ const UserTable = () => {
             <Table.Content>
 
               <Table.Header>
-                <Table.Column className="text-xl">Name</Table.Column>
+                <Table.Column isRowHeader className="text-xl">
+                  Name
+                </Table.Column>
                 <Table.Column className="text-xl">Request Date</Table.Column>
                 <Table.Column className="text-xl">Pickup Date</Table.Column>
                 <Table.Column className="text-xl">Status</Table.Column>
@@ -56,33 +100,40 @@ const UserTable = () => {
 
               <Table.Body>
                 {request.length > 0 ? (
-                  request.map((item) => (
-                    <Table.Row key={item._id}>
-                      <Table.Cell>{item.petName}</Table.Cell>
+                  request.map((item) => {
+                    const status = getStatus(item.status);
 
-                      {/* ✅ FIXED DATE */}
-                      <Table.Cell>{safeDate(item.createdAt)}</Table.Cell>
-                      <Table.Cell>{safeDate(item.pickupDate)}</Table.Cell>
+                    return (
+                      <Table.Row key={item._id}>
+                        <Table.Cell>{item.petName}</Table.Cell>
 
-                      <Table.Cell>
-                        <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm">
-                          Pending
-                        </span>
-                      </Table.Cell>
+                        <Table.Cell>{safeDate(item.createdAt)}</Table.Cell>
+                        <Table.Cell>{safeDate(item.pickupDate)}</Table.Cell>
 
-                      <Table.Cell>
-                        <div className="flex gap-3">
-                          <Link href={`/all-pets/${item.userId}`}>
-                            <Button variant="outline">
-                              <Eye size={16} /> View
-                            </Button>
-                          </Link>
+                        <Table.Cell>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm ${getStatusColor(
+                              status
+                            )}`}
+                          >
+                            {status}
+                          </span>
+                        </Table.Cell>
 
-                          <Cancel user={item} />
-                        </div>
-                      </Table.Cell>
-                    </Table.Row>
-                  ))
+                        <Table.Cell>
+                          <div className="flex gap-3">
+                            <Link href={`/all-pets/${item.userId}`}>
+                              <Button className="rounded-md">
+                                <Eye size={16} /> View
+                              </Button>
+                            </Link>
+
+                            <Cancel user={item} />
+                          </div>
+                        </Table.Cell>
+                      </Table.Row>
+                    );
+                  })
                 ) : (
                   <Table.Row>
                     <Table.Cell colSpan={5} className="text-center py-10">
@@ -104,36 +155,48 @@ const UserTable = () => {
       {/* ================= MOBILE CARD ================= */}
       <div className="md:hidden space-y-4">
         {request.length > 0 ? (
-          request.map((item) => (
-            <div
-              key={item._id}
-              className="bg-white p-4 rounded-xl shadow"
-            >
-              <h2 className="font-bold text-lg">{item.petName}</h2>
+          request.map((item) => {
+            const status = getStatus(item.status);
 
-              <p className="text-sm text-gray-500">
-                Request: {safeDate(item.createdAt)}
-              </p>
+            return (
+              <div key={item._id} className="bg-white p-4 rounded-xl shadow">
+                <h2 className="font-bold text-lg">{item.petName}</h2>
 
-              <p className="text-sm text-gray-500">
-                Pickup: {safeDate(item.pickupDate)}
-              </p>
+                <p className="text-sm text-gray-500">
+                  Request: {safeDate(item.createdAt)}
+                </p>
 
-              <p className="mt-2">
-                Status: <span className="text-yellow-500 font-semibold"> Pending </span>
-              </p>
+                <p className="text-sm text-gray-500">
+                  Pickup: {safeDate(item.pickupDate)}
+                </p>
 
-              <div className="flex gap-2 mt-3">
-                <Link href={`/all-pets/${item.userId}`}>
-                  <Button size="sm">
-                    <Eye size={14} /> View
-                  </Button>
-                </Link>
+                <p className="mt-2">
+                  Status:{" "}
+                  <span
+                    className={`font-semibold ${
+                      status === "Approved"
+                        ? "text-green-500"
+                        : status === "Rejected"
+                        ? "text-red-500"
+                        : "text-yellow-500"
+                    }`}
+                  >
+                    {status}
+                  </span>
+                </p>
 
-                <Cancel user={item} />
+                <div className="flex gap-2 mt-3">
+                  <Link href={`/all-pets/${item.userId}`}>
+                    <Button size="sm">
+                      <Eye size={14} /> View
+                    </Button>
+                  </Link>
+
+                  <Cancel user={item} />
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="text-center py-10">
             <Link href="/all-pets">

@@ -17,7 +17,11 @@ const user = session?.user;
     pickupDate: '',
     message: '',
      createdAt: new Date(),
-     status:['Approved','Pending','Rejected'],
+     status: {
+  type: String,
+  enum: ["Pending", "Approved", "Rejected"],
+  default: "Pending",
+}
   });
 
 

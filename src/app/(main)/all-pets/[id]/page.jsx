@@ -12,7 +12,7 @@ export default async  function PetAdoptionPage({params}) {
   const { id } = await params;
   const course = await fetchSingleCourse(id)
   // const { petName,age,gender,image,healthStatus,location ,price } = course;
-  console.log(course,'course');
+  // console.log(course,'course');
 
  
 
