@@ -6,8 +6,9 @@ import { getAllPets } from "@/lib/pets/data";
 
 import { Button, Dropdown, Label, SearchField } from "@heroui/react";
 
-const Featured = () => {
 
+
+const Featured = () => {
   
   const [courses, setCourses] = useState([]);
 
@@ -16,6 +17,7 @@ const Featured = () => {
 
   // ✅ Default = Low → High
   const [sortBy, setSortBy] = useState("low-high");
+
 
   // Load data
   useEffect(() => {

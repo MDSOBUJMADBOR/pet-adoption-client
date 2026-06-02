@@ -15,14 +15,14 @@ const UserRountPage = () => {
   useEffect(() => {
     if (!petId) return;
 
-    fetch(`http://localhost:8080/request/${petId}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${petId}`)
       .then((res) => res.json())
       .then((data) => setRequest(data));
   }, [petId]);
 
   // ✅ status update function
   const handleStatus = async (id, status) => {
-    const res = await fetch(`http://localhost:5000/request/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/request/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

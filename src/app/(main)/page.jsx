@@ -1,8 +1,6 @@
 import ExtraSections from "@/components/ExtraSection";
 import Featured from "@/components/Featured";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
 import StaticSectionPage from "@/components/Static-section";
 
 
