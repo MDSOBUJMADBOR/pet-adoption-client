@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🐾 Pet Adoption Platform (PawAdopt)
 
-## Getting Started
+## 📌 Project Name
+Pet Adoption Platform (PawAdopt)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Purpose
+This is a full-stack Pet Adoption Platform built with **Next.js, Express.js, and MongoDB**.  
+The system helps connect people with pets who need a loving home and makes the adoption process simple, fast, and organized.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🌐 Live URL
+👉 https://your-live-link.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- 🐶 Browse all available pets with full details (breed, age, location, fee)
+- 🔍 Search pets by name and filter by species
+- 💰 Sort pets by adoption fee
+- 📝 Users can send adoption requests
+- 📋 “My Requests” dashboard with status tracking (pending / approved / rejected)
+- ➕ Add new pets with full form (CRUD system)
+- 🗑️ Delete and update pet listings
+- 👤 User-based data filtering using email
+- 📊 Request system linked with pet ID
+- 📱 Fully responsive design for mobile and desktop
+- 🔐 Authentication-based user access
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧰 NPM Packages Used
 
-## Deploy on Vercel
+### Frontend (Next.js)
+- next
+- react
+- react-dom
+- @heroui/react
+- @heroui/styles
+- lucide-react
+- react-icons
+- date-fns
+- react-hot-toast
+- mongodb
+- better-auth
+- @better-auth/mongo-adapter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend (Express.js)
+- express
+- mongodb
+- cors
+- dotenv
+- nodemon
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🏗️ Tech Stack
+
+- ⚛️ Next.js (Frontend)
+- ⚛️ React 19
+- 🟢 Node.js + Express.js (Backend)
+- 🍃 MongoDB (Database)
+- 🎨 Tailwind CSS + HeroUI
+- 🔐 Better Auth Authentication
+
+---
+
+## 🚀 API Endpoints
+
+### 🐾 Pets (Courses Collection)
+- GET `/courses` → Get all pets
+- GET `/courses/:id` → Get single pet
+- POST `/courses` → Add new pet
+- PATCH `/courses/:id` → Update pet
+- DELETE `/courses/:id` → Delete pet
+- GET `/courses/email/:email` → Get pets by owner email
+
+---
+
+### 📝 Adoption Requests
+- POST `/request` → Create adoption request
+- GET `/request/:email` → Get user requests
+- GET `/request/:petId` → Get requests by pet ID
+- DELETE `/request/:id` → Delete request
+
+---
+
+## 🧠 Key Highlights
+
+- Full CRUD functionality for pets
+- Adoption request system with status tracking
+- Email-based filtering system
+- Pet-to-user relationship handling
+- REST API backend with Express
+- MongoDB database integration
+- Clean UI with HeroUI components
+
+---
+
+## ❤️ Mission
+To help stray and abandoned pets find loving homes and reduce animal homelessness by connecting adopters with pets easily.
+
+---
+
+## 👨‍💻 Developer Info
+**Name:** MD SOBUJ MADBOR  
+📧 Email: sobujmadbor660@gmail.com  
+📍 Location: Dhaka, Bangladesh  
+
+---
+
+## 📌 Note
+If you like this project, don't forget to ⭐ the repository.
