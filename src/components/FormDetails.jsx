@@ -52,7 +52,7 @@ const FormDetails = ({ course }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/request", {
+      const res = await fetch("https://adoption-server-blond.vercel.app/request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", 

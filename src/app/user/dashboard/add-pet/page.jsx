@@ -54,7 +54,7 @@ const onSubmit = async (e) => {
 console.log(petData,'petData');
 
   try {
-    const res = await fetch("http://localhost:8080/courses", {
+    const res = await fetch("https://adoption-server-blond.vercel.app/courses", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json' 

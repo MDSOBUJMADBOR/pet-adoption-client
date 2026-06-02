@@ -14,7 +14,7 @@ const item = Object.fromEntries(formData.entries());
 
 // console.log(item,'form');
 
-const res = await fetch(`http://localhost:8080/courses/${_id}` , {
+const res = await fetch(`https://adoption-server-blond.vercel.app/courses/${_id}` , {
   method: "PATCH",
   headers: {
     "content-type": "application/json",
