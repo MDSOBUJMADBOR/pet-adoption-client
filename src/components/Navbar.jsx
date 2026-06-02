@@ -77,7 +77,7 @@ const handleLogOut = async () => {
 
 
   return (
-    <div className="border-b border-gray-200 sticky top-0  z-50 shadow-xl/3 px-4 ">
+    <div className="border-b border-gray-200 sticky top-0  z-50 shadow-xl/3 px-4 bg-gray-200">
       <nav className="flex justify-between items-center p-4 max-w-7xl mx-auto w-full ">
          
         <div className="flex  gap-4 items-center">

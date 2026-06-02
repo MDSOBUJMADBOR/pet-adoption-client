@@ -62,16 +62,17 @@ const UserTable = () => {
     if (status === "Rejected") return "bg-red-500 text-white";
     return "bg-yellow-500 text-white";
   };
-  const pendingCount = request.filter(
-  (item) => getStatus(item.status) === "Pending"
+
+const pendingCount = request.filter(
+  (item) => getStatus(item.status) === "pending"
 ).length;
 
 const approvedCount = request.filter(
-  (item) => getStatus(item.status) === "Approved"
+  (item) => getStatus(item.status) === "approved"
 ).length;
 
 const rejectedCount = request.filter(
-  (item) => getStatus(item.status) === "Rejected"
+  (item) => getStatus(item.status) === "rejected"
 ).length;
 
   return (
