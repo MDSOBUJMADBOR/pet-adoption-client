@@ -9,12 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@better-auth/kysely-adapter": "^1.6.13",
     "@better-auth/mongo-adapter": "^1.6.11",
     "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "^3.0.5",
     "@heroui/styles": "^3.0.5",
     "better-auth": "^1.6.11",
     "date-fns": "^4.3.0",
+    "kysely": "^0.29.2",
     "lucide-react": "^1.16.0",
     "mongodb": "^7.2.0",
     "next": "16.2.6",
