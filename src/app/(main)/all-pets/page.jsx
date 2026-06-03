@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import PetCard from "@/components/PetCard";
 import { getAllPets } from "@/lib/pets/data";
-import {ChatLoader} from "@heroui-pro/react";
 import { Button, Dropdown, Label, SearchField } from "@heroui/react";
 
 
@@ -160,7 +159,7 @@ const Featured = () => {
         {filteredPets.length === 0 ? (
           <p className="text-center text-gray-500 col-span-3">
             No pets found 🐾
-            <ChatLoader.Spinner />
+            
           </p>
         ) : (
           filteredPets.map((pet) => (
