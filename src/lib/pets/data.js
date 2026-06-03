@@ -27,7 +27,7 @@ export const FetchGetAllPets = async () => {
 };
 
 export const fetchSingleCourse = async (id,token) => { 
-  console.log(id);
+  // console.log(id);
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`,{
     headers: {
       authorization: `Bearer ${token}`

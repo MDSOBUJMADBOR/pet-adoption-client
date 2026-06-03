@@ -7,6 +7,7 @@ import FormDetails from '@/components/FormDetails';
 import Link from 'next/link';
 import { Button } from '@heroui/react';
 import { ArrowLeft } from 'lucide-react';
+import { headers } from 'next/headers';
 
 export default async  function PetAdoptionPage({params}) {
   const { id } = await params;
