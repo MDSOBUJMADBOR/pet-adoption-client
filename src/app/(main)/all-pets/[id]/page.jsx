@@ -10,7 +10,10 @@ import { ArrowLeft } from 'lucide-react';
 
 export default async  function PetAdoptionPage({params}) {
   const { id } = await params;
-  const course = await fetchSingleCourse(id)
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+  const course = await fetchSingleCourse(id,token) 
   // const { petName,age,gender,image,healthStatus,location ,price } = course;
   // console.log(course,'course');
 

@@ -4,7 +4,7 @@ import {Button, Input, Label, Modal, Surface, TextArea, TextField} from "@heroui
 import { SquarePen } from "lucide-react";
 
 const EditModal = ({item}) => {
-  console.log(item,'item');
+  // console.log(item,'item');
   const {_id,petName,species,breed,description,gender,healthStatus,image,location,status,adoptionFee,age} = item ;
   // console.log(species,'petName');
 const onSubmit = async (e) => {

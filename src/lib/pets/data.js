@@ -26,9 +26,13 @@ export const FetchGetAllPets = async () => {
   return data; 
 };
 
-export const fetchSingleCourse = async (id) => { 
+export const fetchSingleCourse = async (id,token) => { 
   console.log(id);
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`,{
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
   const data = await res.json();
   return data;
 };
